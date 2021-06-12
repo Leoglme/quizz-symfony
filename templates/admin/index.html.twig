@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block main %}
+    <div class="admin__home">
+        <div class="card mb-3 admin__card" style="width: 100%;">
+            <div class="all__center">
+                <div class="card-body" style="text-align: center;">
+                    <h2 class="card__title">Gérer les catégories</h2>
+                    <img class="card__image" src="{{ url('home') }}assets/images/category.png" alt="categories admin">
+                    <p class="text-muted">Accéder à cette page pour éditer, modifier, supprimer une catégorie ou ajouter
+                        en
+                        une nouvelle.</p>
+                    <a href="{{ path('admin.category.index') }}" class="btn btn-secondary">Gérer les catégories</a>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-3 admin__card" style="width: 100%;">
+            <div class="all__center">
+                <div class="card-body" style="text-align: center;">
+                    <h2 class="card__title">Gérer les utilisateurs</h2>
+                    <img class="card__image" src="{{ url('home') }}assets/images/users.png" alt="categories admin">
+                    <p class="text-muted">Accéder à cette page pour éditer, modifier, supprimer un utilisateur ou
+                        ajouter en
+                        un nouveau.</p>
+                    <a href="{{ path('admin.users.index') }}" class="btn btn-secondary">Gérer les utilisateurs</a>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-3 admin__card" style="width: 100%;">
+            <div class="all__center">
+                <div class="card-body" style="text-align: center;">
+                    <h2 class="card__title">Gérer les quiz</h2>
+                    <img class="card__image" src="{{ url('home') }}assets/images/quiz.png" alt="categories admin">
+                    <p class="text-muted">Accéder à cette page pour éditer, modifier, supprimer un quiz ou ajouter en
+                        un nouveau.</p>
+                    <a href="{{ path('admin.category.index') }}" class="btn btn-secondary">Gérer les quiz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ ga_tracking }} | {{ name }}{% endblock %}
+{% block main %}
+    <div class="categories__container" style="justify-content: center;">
+        <div class="card mb-3 category_cards" style="width: 100%;">
+            <div class="row no-gutters">
+                <div class="col-md-4 category__image--ctn" style="padding: 0 5px; background: #642e60;">
+                    <img src="{{ url('home') }}assets/images/5questions.png" alt="{{ category.name }}"
+                         class="card-img category__image">
+                </div>
+                <div class="col-md-8" style="display: flex; align-items: center;">
+                    <div class="card-body" style="text-align: center;">
+                        <div class="category__title name"><span class="res">{{ category.name }}</span></div>
+                        <a href="{{ path('show_quiz_harry', {id: category.id, name: category.formatName, count: "5", number: number}) }}"
+                           class="btn btn-secondary">5 questions</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-3 category_cards" style="width: 100%;">
+            <div class="row no-gutters">
+                <div class="col-md-4 category__image--ctn" style="padding: 0 5px; background: #642e60;">
+                    <img src="{{ url('home') }}assets/images/10questions.png" alt="{{ category.name }}"
+                         class="card-img category__image">
+                </div>
+                <div class="col-md-8" style="display: flex; align-items: center;">
+                    <div class="card-body" style="text-align: center;">
+                        <div class="category__title name"><span class="res">{{ category.name }}</span></div>
+                        <a href="{{ path('show_quiz_harry', {id: category.id, name: category.formatName, count: "10", number: number}) }}"
+                           class="btn btn-secondary">10 questions</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

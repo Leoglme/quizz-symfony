@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ ga_tracking }} | Mot de passe oublié{% endblock %}
+
+{% block main %}
+<div class="center__row" style="height: 90%">
+    <div class="card default__card">
+        <div class="login__card--header">
+            <h2>Récupération de compte</h2>
+            <h5>Entrez votre nouveau mot de passe pour récupérer votre compte.</h5>
+        </div>
+        {{ form_start(resetForm) }}
+        {{ form_row(resetForm.plainPassword) }}
+        <button class="btn btn__form--default">Confirmer</button>
+        {{ form_end(resetForm) }}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateur | Modifier {{ user.username }}{% endblock %}
+
+{% block main %}
+    <a class="link__default" href="{{ path('admin.users.index') }}"><i class="fas fa-arrow-left"></i> Utilisateurs</a>
+
+    <div class="container mt-4">
+        <h1 class="default__title">Modifier l'utilisateur {{ user.username }}</h1>
+        {{ include('admin/users/_form_category.html.twig', {form: form,styleIcon: 'padding-right: 6px;', icon: 'fas fa-pen', button: 'Modifier'}) }}
+    </div>
+
+{% endblock %}
+

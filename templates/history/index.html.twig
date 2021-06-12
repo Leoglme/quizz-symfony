@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ ga_tracking }} | Historique{% endblock %}
+
+{% block main %}
+    {% if notEmpty %}
+    {% for history in histories %}
+        <p class="default__para">Quiz Catégorie : {{ history.categories.name }}</p>
+        <p class="default__para">Résultat: {{ history.result.goodResponse }} bonne réponse sur {{ history.result.totalQuestion }} questions.</p>
+    {% endfor %}
+    {% endif %}
+    {% if not notEmpty %}
+        <p class="default__para">aucun quiz passé pour le moment :(</p>
+        <a role="button" href="{{ path('category.list') }}" class="btn btn-secondary">Découvrir nos quiz</a>
+    {% endif %}
+{% endblock %}

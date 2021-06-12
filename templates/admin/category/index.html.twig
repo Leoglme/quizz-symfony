@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ ga_tracking }} | Admin{% endblock %}
+
+{% block main %}
+    <a class="link__default" href="{{ path('admin.home') }}"><i class="fas fa-arrow-left"></i> Admin</a>
+    <div class="container">
+        <h1 class="default__title">Gérer les catégories</h1>
+        {% for message in app.flashes('success')%}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <table class="table table-striped">
+            <thead>
+                  <tr>
+                      <th>Nom de la catégorie</th>
+                      <th>Actions</th>
+                  </tr>
+            </thead>
+            <tbody>
+            {% for category in categories %}
+                <tr>
+                    <td>{{ category.name }}</td>
+                    <td>
+                        <a href="{{ path('admin.category.edit', {id: category.id}) }}" class="btn btn-secondary mt-0">Modifier</a>
+                        <form method="post" action="{{ path('admin.category.delete', {id: category.id}) }}" style="display: inline-block;">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete_category' ~ category.id) }}">
+                            <button class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        
+        <div class="text-right" style="margin-bottom: 40px;">
+            <a href="{{ path('admin.category.new') }}" class="btn btn-info">Créer une catégorie</a>
+        </div>
+    </div>
+{% endblock %}

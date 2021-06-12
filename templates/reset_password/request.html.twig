@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ ga_tracking }} | Mot de passe oublié{% endblock %}
+
+{% block main %}
+    {% for flashError in app.flashes('reset_password_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+    <div class="center__row" style="height: 80%">
+        <div class="card default__card">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success"
+                     style="margin-bottom: unset;margin-top: 16px;display: flex;justify-content: center;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            <div class="login__card--header">
+                <h2>Mot de passe oublié ?</h2>
+                <h5>Entrez votre adresse e-mail et nous vous enverrons un
+                    lien pour réinitialiser votre mot de passe..</h5>
+            </div>
+
+            {{ form_start(requestForm) }}
+            {{ form_row(requestForm.email, {'label': 'Email', 'attr':{'placeholder': 'Exemple@hotmail.fr', 'class': 'default__input'}}) }}
+            <button type="submit" class="btn btn__form--default">Envoyer une demande</button>
+            <div style="color: greenyellow">{{ form_errors(requestForm) }}</div>
+            {{ form_end(requestForm) }}
+        </div>
+    </div>
+{% endblock %}

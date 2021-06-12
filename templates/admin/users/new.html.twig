@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateur | Créer un utilisateur{% endblock %}
+
+{% block main %}
+    <a class="link__default" href="{{ path('admin.users.index') }}"><i class="fas fa-arrow-left"></i> Utilisateurs</a>
+
+    <div class="container mt-4">
+        <h1 class="default__title">Créer un utilisateur</h1>
+        {{ include('admin/users/_form_category.html.twig', {form: form,styleIcon: 'padding-right: 6px;', icon: 'fas fa-plus', button: 'Ajouter'}) }}
+    </div>
+
+{% endblock %}
+
+
+

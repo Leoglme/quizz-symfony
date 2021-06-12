@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+        {% block stylesheets %}
+            <link rel="stylesheet" type="text/css" href="{{ url('home')}}assets/styles/global.css" />
+        {% endblock %}
+
+        {% block javascripts %}
+            {#{{ encore_entry_script_tags('app') }}#}
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ url('home')}}assets/images/quiz-icon.png">
+        <link rel="apple-touch-icon" href="{{ url('home')}}assets/images/quiz-icon.png">
+        <script src="https://kit.fontawesome.com/054fdad312.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+            <nav class="navbar navbar-dark fixed-top bg-purple flex-md-nowrap p-0 shadow">
+                <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{{ path('home') }}">
+                    <img src="{{ url('home')}}assets/images/quiz-logo.png" alt="logo quiz" class="quiz__logo">
+                </a>
+                <ul class="navbar-nav px-3" style="flex-direction: row;">
+                    {% if not app.user %}
+                    <li class="nav-item text-nowrap">
+                        <a style="color: #fdb913;" class="nav-link" href="{{ path('app_login')}}">Connexion <i class="fas fa-sign-in-alt"></i></a>
+                    </li>
+                    <li class="nav-item text-nowrap">
+                        <a style="color: #fdb913;" class="nav-link" href="{{ path('security_registration')}}">S'inscrire <i class="fas fa-sign-in-alt"></i></a>
+                    </li>
+                    {% else %}
+                        <li class="nav-item text-nowrap" style="max-width: 245px;">
+                            <span style="color: #fdb913;" class="nav-link">{{ app.user.username }}</span>
+                        </li>
+                    <li class="nav-item text-nowrap">
+                        <a style="color: #fdb913;" class="nav-link" href="{{ path('app_logout')}}">Déconnexion <i class="fas fa-sign-in-alt"></i></a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                        <div class="sidebar-sticky" style="position: sticky; top: 90px;">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" style="font-weight: 500;" href="{{ path('category.list') }}">
+                                        <span data-feather="file"></span>
+                                        Catégorie
+                                    </a>
+                                </li>
+                                {% for category in categories %}
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ path('category.index', {id: category.id, name: category.formatName}) }}">
+                                            <span data-feather="file"></span>
+                                            {{ category.name }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </nav>
+
+                    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                        {% block main %}
+                        {% endblock%}
+                    </main>
+                </div>
+            </div>
+    </body>
+</html>

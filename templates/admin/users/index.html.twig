@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ ga_tracking }} | Admin{% endblock %}
+
+{% block main %}
+    <a class="link__default" href="{{ path('admin.home') }}"><i class="fas fa-arrow-left"></i> Admin</a>
+    <div class="container">
+        <h1 class="default__title">Gérer les utilisateurs</h1>
+        {% for message in app.flashes('success')%}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nom de l'utilisateur</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td style="display: flex;">
+                        <a style="margin-right: 8px;" href="{{ path('admin.user.edit', {id: user.id}) }}" class="btn btn-secondary mt-0">Modifier</a>
+                        <form method="post" action="{{ path('admin.user.delete', {id: user.id}) }}" style="display: inline-block;">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete_user' ~ user.id) }}">
+                            <button class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-right" style="margin-bottom: 40px;">
+            <a href="{{ path('admin.user.new') }}" class="btn btn-info">Ajouter un utilisateur</a>
+        </div>
+    </div>
+{% endblock %}

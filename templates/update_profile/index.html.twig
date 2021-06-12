@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ ga_tracking }} | Modifier vos information{% endblock %}
+{% block main %}
+<div class="center__row" style="height: 90%">
+    <div class="card default__card">
+        <div class="login__card--header">
+            <h2>Récupération de compte</h2>
+            <h5>Entrez vos informations pour récupérer ou modifier votre compte.</h5>
+        </div>
+
+    {{ form_start(form) }}
+    {{ form_row(form.username, {'label': 'Nom de l\'utilisateur', 'attr':{'placeholder': 'Pseudo', 'class': 'default__input'}}) }}
+    {{ form_row(form.email, {'label': 'Email', 'attr':{'placeholder': 'Exemple@hotmail.fr', 'class': 'default__input'}}) }}
+    {{ form_row(form.password, {'label': 'Mot de passe', 'attr':{'placeholder': '*****', 'class': 'default__input'}}) }}
+    {{ form_row(form.confirm_password, {'label': 'Confirmation du mot de passe', 'attr':{'placeholder': '*****', 'class': 'default__input'}}) }}
+        <button type="submit" class="btn btn__form--default">Confirmer</button>
+    <div style="color: greenyellow">{{ form_errors(form) }}</div>
+    {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

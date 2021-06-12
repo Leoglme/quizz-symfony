@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ ga_tracking }} | Catégories{% endblock %}
+
+{% block main %}
+    <div class="categories__container">
+    {% for category in categories %}
+        <div class="card mb-3 category_cards" style="width: 100%;">
+            <div class="row no-gutters">
+                <div class="col-md-4 category__image--ctn">
+                    <img src="assets/images/{{ category.id }}.png" alt="{{ category.name }}" class="card-img category__image">
+                </div>
+                <div class="col-md-8" style="display: flex; align-items: center;">
+                    <div class="card-body" style="text-align: center;">
+                        <div class="category__title name"><span class="res">{{ category.name }}</span></div>
+                        <a href="{{ path('category.index', {id: category.id, name: category.formatName}) }}" class="btn btn-secondary">Accéder au quiz</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+
+
+{% endblock %}

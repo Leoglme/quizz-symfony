@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ ga_tracking }} | Connexion{% endblock %}
+
+{% block main %}
+    <div class="center__row" style="height: 80%">
+        <div class="card default__card">
+            {% for message in app.flashes('success')%}
+                <div class="alert alert-success" style="margin-bottom: unset;margin-top: 16px;display: flex;justify-content: center;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            <form method="post">
+                {% if error %}
+                    <div class="alert alert-danger" style="width: 100%;display: flex;justify-content: center;">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+                {% if app.user %}
+                    <div class="mb-3">
+                        You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                {% endif %}
+                <div class="login__card--header">
+                    <h2>Bonjour !</h2>
+                    <h5>Connectez-vous pour découvrir toutes nos
+                        fonctionnalités.</h5>
+                </div>
+                <label for="inputEmail" class="default__card--label">Email</label>
+                <input type="email" value="{{ last_username }}" name="email" placeholder="Exemple@hotmail.fr"
+                       id="inputEmail" class="form-control default__input" autocomplete="email" required autofocus>
+                <label for="inputPassword" class="default__card--label" style="margin-top: 16px;">Mot de passe</label>
+                <input type="password" name="password" id="inputPassword" placeholder="*****"
+                       class="form-control default__input"
+                       autocomplete="current-password" required>
+                <a href="{{ path('app_forgot_password_request') }}" class="btn btn-link">
+                    Récupérer votre compte
+                </a>
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}"
+                >
+
+                {#
+                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                See https://symfony.com/doc/current/security/remember_me.html
+
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" name="_remember_me"> Remember me
+                    </label>
+                </div>
+                #}
+                <button type="submit" class="btn btn__form--default">
+                    Se connecter
+                </button>
+                <h5 class="footer__title">Envie de nous rejoindre ?<a
+                            href="{{ path('security_registration') }}" class="login__link"> Créer un compte</a>
+                </h5>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}

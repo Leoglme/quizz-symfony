@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ ga_tracking }} | Accueil{% endblock %}
+
+{% block main %}
+<div class="admin__home">
+    <div class="card mb-3 admin__card" style="width: 100%;">
+        <div class="all__center">
+            <div class="card-body" style="text-align: center;">
+                <h2 class="card__title">Découvrir nos quiz</h2>
+                <img class="card__image" src="{{ url('home') }}assets/images/category.png" alt="categories quiz">
+                <p class="text-muted">Accéder à cette page pour découvrir tous nos quiz et nos catégories.</p>
+                <a href="{{ path('category.list') }}" class="btn btn-secondary">Voir les catégories</a>
+            </div>
+        </div>
+    </div>
+    {% if roles %}
+        <div class="card mb-3 admin__card" style="width: 100%;">
+            <div class="all__center">
+                <div class="card-body" style="text-align: center;">
+                    <h2 class="card__title">Administration du site</h2>
+                    <img class="card__image" src="{{ url('home') }}assets/images/admin.png" alt="admin panel">
+                    <p class="text-muted">Accéder à cette page pour administrer le site web.</p>
+                    <a href="{{ path('admin.home') }}" class="btn btn-secondary">Administration</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% if connected %}
+        <div class="card mb-3 admin__card" style="width: 100%;">
+            <div class="all__center">
+                <div class="card-body" style="text-align: center;">
+                    <h2 class="card__title">Vos informations</h2>
+                    <img class="card__image" src="{{ url('home') }}assets/images/profile.png" alt="user update info">
+                    <p class="text-muted">Accéder à cette page pour modifier vos informations de profil.</p>
+                    <a href="{{ path('update.profile.index', {id: userId}) }}" class="btn btn-secondary">Modifier mon profil</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    <div class="card mb-3 admin__card" style="width: 100%;">
+        <div class="all__center">
+            <div class="card-body" style="text-align: center;">
+                <h2 class="card__title">Créer votre quiz</h2>
+                <img class="card__image" src="{{ url('home') }}assets/images/quiz.png" alt="create quiz">
+                <p class="text-muted">Accéder à cette page pour créer votre propre quiz</p>
+                <a href="{{ path('create_quiz') }}" class="btn btn-secondary">Commencer</a>
+            </div>
+        </div>
+    </div>
+    <div class="card mb-3 admin__card" style="width: 100%;">
+        <div class="all__center">
+            <div class="card-body" style="text-align: center;">
+                <h2 class="card__title">Historique quiz</h2>
+                <img class="card__image" src="{{ url('home') }}assets/images/history.png" alt="user quiz history">
+                <p class="text-muted">Accéder à cette page pour consulter votre historique de quiz.</p>
+                <a href="{{ path('history.index') }}" class="btn btn-secondary">Mon historique</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
